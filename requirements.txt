@@ -1,8 +1,5 @@
 streamlit
-langchain
-langchain-community
-langchain-ollama
-ollama
+groq
 seaborn
 pandas
 numpy
