@@ -13,7 +13,7 @@ st.set_page_config(page_title="Lead Scoring AI", page_icon="📊", layout="wide"
 GROQ_MODEL_NAME = "llama-3.3-70b-versatile"
 
 # Initialize Groq client
-client = Groq(api_key="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")
+client = Groq(api_key="")
 
 # ========== Load ML Model ==========
 @st.cache_resource
