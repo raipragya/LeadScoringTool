@@ -27,4 +27,5 @@ git clone https://github.com/your-username/lead-scoring-tool.git
 cd lead-scoring-tool
 pip install -r requirements.txt
 python train_model.py(make sure your model is in the same directory)
+get your GROQ_API_KEY from groq cloud
 streamlit run app.py
