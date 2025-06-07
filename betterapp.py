@@ -6,11 +6,10 @@ import joblib
 import os
 from groq import Groq
 from dotenv import load_dotenv
-import sklearn
 
 # ========== CONFIGURATION ==========
 st.set_page_config(page_title="Lead Scoring AI", page_icon="📊", layout="wide")
-st.write(f"scikit-learn version: {sklearn.__version__}")
+#st.write(f"scikit-learn version: {sklearn.__version__}")
 
 # ========== API KEYS ==========
 GROQ_MODEL_NAME = "llama-3.3-70b-versatile"
