@@ -19,6 +19,8 @@ This project enhances the lead generation pipeline by scoring enriched leads (fr
 - ⬇️ Export high-priority leads to CSV
 
 ---
+## Public URL:
+https://leadscoringtool-o5fat4gze5tryzhyehufu3.streamlit.app/
 
 ## 📦 Installation & Setup
 
