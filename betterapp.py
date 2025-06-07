@@ -1,19 +1,24 @@
+# lead_scorer_ui_dark.py
 import streamlit as st
 import pandas as pd
 import numpy as np
 import joblib
 import os
 from groq import Groq
+from dotenv import load_dotenv
 
 # ========== CONFIGURATION ==========
 st.set_page_config(page_title="Lead Scoring AI", page_icon="📊", layout="wide")
 
 # ========== API KEYS ==========
-#GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 GROQ_MODEL_NAME = "llama-3.3-70b-versatile"
 
+# Load environment variables from .env file
+load_dotenv()
+groq_api_key = os.getenv("GROQ_API_KEY")
+
 # Initialize Groq client
-client = Groq(api_key="")
+client = Groq(api_key=groq_api_key)
 
 # ========== Load ML Model ==========
 @st.cache_resource
@@ -63,8 +68,30 @@ def build_feature_summary(row, top_features):
 
 # ========== MAIN APP ==========
 def main():
+    st.markdown("""
+        <style>
+            .explanation-container {
+                display: flex;
+                gap: 2rem;
+                margin-top: 1rem;
+                align-items: flex-start;
+            }
+            .explanation-box {
+                background-color: #1e1e1e;
+                padding: 1.2rem;
+                border-radius: 0.5rem;
+                border: 1px solid #333;
+                color: #eee;
+                font-size: 1rem;
+                flex: 1;
+                max-height: 300px;
+                overflow-y: auto;
+            }
+        </style>
+    """, unsafe_allow_html=True)
+
     st.markdown("<h1 style='text-align: center;'>🚀 AI-Powered Lead Scoring Tool</h1>", unsafe_allow_html=True)
-    st.markdown("       Upload your business lead data and understand what drives their score using powerful LLM explanations.")
+    st.markdown("Upload your business lead data and understand what drives their score using powerful LLM explanations.")
 
     with st.sidebar:
         st.image("https://upload.wikimedia.org/wikipedia/commons/3/33/Graph_icon.svg", width=120)
@@ -108,7 +135,6 @@ def main():
     st.success("✅ Lead scores generated!")
     st.bar_chart(df["Lead Score"])
 
-    # --- Top Feature Importance ---
     st.subheader("📌 Top Features Used by Model")
     importances = model.named_steps["regressor"].feature_importances_
     top_features = [f for f, _ in sorted(zip(features, importances), key=lambda x: -x[1])[:5]]
@@ -130,7 +156,11 @@ def main():
                     explanation = get_llm_explanation_groq(summary)
                     st.success("✅ Explanation Generated")
                     st.markdown("### 📝 Explanation")
-                    st.markdown(explanation)
+                    st.markdown(f"""
+                        <div class='explanation-container'>
+                            <div class='explanation-box'>{explanation}</div>
+                        </div>
+                    """, unsafe_allow_html=True)
                 except Exception as e:
                     st.error(f"Groq error: {e}")
 
