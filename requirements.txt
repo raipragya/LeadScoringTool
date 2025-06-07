@@ -6,3 +6,4 @@ numpy
 joblib
 scikit-learn
 python-dotenv
+scikit-learn==1.6.1
