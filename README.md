@@ -16,7 +16,6 @@ This project enhances the lead generation pipeline by scoring enriched leads (fr
 - 🎯 Assign a **lead score** using a trained `RandomForestRegressor`
 - 🔍 Get **plain-language explanations** for why a lead is good or bad
 - 📊 Filter and sort leads interactively
-- ⬇️ Export high-priority leads to CSV
 
 ---
 ## Public URL:
